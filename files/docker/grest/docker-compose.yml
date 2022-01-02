@@ -3,6 +3,9 @@ version: "3.5"
 services:
   postgres:
     image: postgres:13.5-bullseye
+    shm_size: '8gb'
+    cap_add:
+      - SYS_NICE
     env_file: ./.env
     ports:
       - 8059:8059
