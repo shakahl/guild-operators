@@ -367,8 +367,8 @@
     # Create skeleton whitelist URL file if one does not already exist using most common option
     if [[ ! -f "${CNODE_HOME}"/files/grestrpcs ]]; then
       # Not network dependent, as the URL patterns followed will default to monitoring instance from koios - it will anyways be overwritten as per user preference based on variables in grest-poll.sh
-      curl -sfkL "https://api.koios.rest/koiosapi.yaml" -o .koiosapispec 2>/dev/null || return 0
-      grep " #RPC" .koiosapispec | sed -e 's#^  /#/#' | cut -d: -f1 | sort > "${CNODE_HOME}"/files/grestrpcs
+      curl -sfkL "https://api.koios.rest/koiosapi.yaml" -o "${CNODE_HOME}"/files/koiosapi.yaml 2>/dev/null || return 0
+      grep " #RPC" "${CNODE_HOME}"/files/koiosapi.yaml | sed -e 's#^  /#/#' | cut -d: -f1 | sort > "${CNODE_HOME}"/files/grestrpcs
     fi
 
     bash -c "cat <<-EOF > ${HAPROXY_CFG}
